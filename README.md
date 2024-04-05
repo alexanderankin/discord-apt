@@ -8,7 +8,11 @@ Note that as a result the `LICENSE` herein explicitly does _not_ apply to the fi
 Usage instructions
 --
 1. Create a file `/etc/apt/sources.list.d/discord.list` with the contents `deb https://palfrey.github.io/discord-apt/debian/ ./`
+    1. Optionally, limit this repo to your archiecture: `deb [arch=amd64] ...`
+    2. Optionally, specify an explicit key file for verifying the packages: `deb [signed-by=/etc/apt/keyrings/...] ...`
 2. Download the file https://palfrey.github.io/discord-apt/discord-apt.gpg.asc to `/etc/apt/trusted.gpg.d`
+    1. Optionally, `gpg --dearmor` the file to convert it to the format `apt` prefers if your apt requires it: `cat input.gpg | gpg --dearmor > output.gpg ; mv output.gpg input.gpg`
+    2. If you specified a `signed-by` option in step 1, make sure the file location matches that value.
 3. `sudo apt-get update`
 4. `sudo apt-get install discord`
 
